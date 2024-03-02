@@ -8,6 +8,10 @@ const getFreshModelObject = () => ({
     email: ""
 });
 
+const login = (e) => {
+    e.preventDefault();
+}
+
 export default function Login() {
     const {
         values,
@@ -15,7 +19,7 @@ export default function Login() {
         errors,
         setErrors,
         handleInputChange
-    } = useForm();
+    } = useForm(getFreshModelObject);
 
     return (
         <Center>
@@ -28,11 +32,12 @@ export default function Login() {
                             width: '90%'
                         }
                     }}>
-                        <form noValidate autoComplete="off">
+                        <form noValidate autoComplete="off" onSubmit={login}>
                             <TextField
                                 label="Email"
                                 name="email"
-                                value={ }
+                                value={values.email}
+                                onChange={handleInputChange}
                                 variant="outlined" />
                             <TextField
                                 label="Name"
